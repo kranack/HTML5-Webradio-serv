@@ -27,6 +27,11 @@ if (isset($_GET) && ($_GET['server'])) {
 			$tmp = $serveur->getStatus();
 			$infos = getRadioInfos("mouv", $tmp);
 			break;
+		case 'fip' :
+			$serveur->setUrl($_GET['address']);
+			$tmp = $serveur->getStatus();
+			$infos = getRadioInfos("fip", $tmp);
+			break;
 		default :
 			$serveur->setUrl($_GET['address']);
 			$infos = $serveur->getStatus();
