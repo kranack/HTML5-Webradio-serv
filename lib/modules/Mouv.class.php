@@ -24,17 +24,18 @@ class Mouv {
 			$item['title'] = $r[1];
 			
 			if (!(empty($item))) {
+
 				//print (substr(substr($list[0]['cover'], '10'), 0,'-11'));
 				//print($list[0]['cover']);
 				$infos['now_playing']['artist'] = $item['artist'];
-				$infos['now_playing']['track'] = $item['title'];
+				$infos['now_playing']['track'] = ($item['title'] == null) ? '' : $item['title'];
 				$infos['now_playing']['cover'] = substr(substr($item['cover'], '10'), 0,'-11');
 			}
 		} else {
 			$infos['artist'] = "";
 			$infos['track'] = "";
 		}
-
+		
 		return $infos;
 	}
 

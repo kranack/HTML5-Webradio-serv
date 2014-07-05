@@ -1,6 +1,6 @@
 <?php
 
-class OuiFm {
+class Ouifm {
 
 
 	public static function getInfos($tmp) {
