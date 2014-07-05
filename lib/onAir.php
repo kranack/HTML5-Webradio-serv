@@ -15,6 +15,7 @@ if (isset($_GET) && ($_GET['server'])) {
 	$serveur = new IceCast();
 	$html = "";
 	$infos = array();
+
 	switch ($_GET['server']) {
 		case 'ouifm' :
 			$serveur->setUrl($_GET['address']);

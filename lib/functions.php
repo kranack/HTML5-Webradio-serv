@@ -20,19 +20,19 @@ function LeMouv_hourFormat ($hour) {
 	
 }
 
-// TODO : Fix the mouv case
+
 function getRadioInfos ($radio, $tmp) {
 
 	switch ($radio) {
 		case 'mouv' :
 			$infos = $tmp;
 			$minutes = LeMouv_chooseMin(date('i'));
-			$html = file_get_html('http://www.lemouv.fr/ckoicetitre?start_date='.date('Y-m-d').'&start_hour='.LeMouv_hourFormat(date('H')).'&start_minute='.$minutes.'&submit.x=22&submit.y=21');
-			//print ('http://www.lemouv.fr/ckoicetitre?start_date='.date('Y-m-d').'&start_hour='.LeMouv_hourFormat(date('H')).'&start_minute='.$minutes.'&submit.x=22&submit.y=21');
+			$html = file_get_html('http://www.lemouv.fr/ckoicetitre?start_date='.date('Y-m-d').'&start_hour='.LeMouv_hourFormat(date('H')).'&start_minute='.$minutes);
+			//print ('http://www.lemouv.fr/ckoicetitre?start_date='.date('Y-m-d').'&start_hour='.LeMouv_hourFormat(date('H')).'&start_minute='.$minutes);
 			//print($html);
-			
+
 			$infos['title'] = "Le Mouv'";
-			$live = $html->find('span.direct-emission', 0);
+			$live = $html->find('div#block-lemouv_direct-direct', 0);
 			$infos['now_playing']['animateur'] = trim(substr($live->find('span.animateur', 0)->plaintext, 0));
 			$infos['now_playing']['emission'] = trim(substr($html->find('span.emission', 0)->plaintext, 0));
 			
@@ -53,6 +53,7 @@ function getRadioInfos ($radio, $tmp) {
 				$item['artist'] = "";
 				$item['track'] = "";
 			}
+			echo 'artist : '.$item['artist'];
 			break;
 		case 'oui' :
 			$infos = $tmp;
