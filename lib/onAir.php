@@ -9,25 +9,28 @@
 
 require_once ("./functions.php");
 require_once ("./Icecast.php");
-include_once ("../vendor/simplehtmldom/simple_html_dom.php");
-
-function __autoload($classname) {
-    $filename = "./modules/". $classname .".class.php";
-    include_once($filename);
-}
 
 if (isset($_GET) && ($_GET['server'])) {
 
 	$serveur = new IceCast();
 	$html = "";
 	$infos = array();
-	
-	switch ($_GET['address']) {
-		case '':
+
+	switch ($_GET['server']) {
+		case 'ouifm' :
 			$serveur->setUrl($_GET['address']);
 			$tmp = $serveur->getStatus();
-			echo 'no address';
-			//$infos = $_GET['server']::getInfos($tmp);
+			$infos = getRadioInfos("oui", $tmp);
+			break;
+		case 'mouv' :
+			$serveur->setUrl($_GET['address']);
+			$tmp = $serveur->getStatus();
+			$infos = getRadioInfos("mouv", $tmp);
+			break;
+		case 'fip' :
+			$serveur->setUrl($_GET['address']);
+			$tmp = $serveur->getStatus();
+			$infos = getRadioInfos("fip", $tmp);
 			break;
 		default :
 			$serveur->setUrl($_GET['address']);
