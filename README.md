@@ -1,8 +1,7 @@
-HTML5-Webradio
-==============
+HTML5-Webradio-Server
+=====================
 
-HTML5 Webradio Player for Firefox OS
-
+PHP server for HTML5-Webradio application : https://github.com/kranack/HTML5-Webradio-app
 
 Description
 -----------
