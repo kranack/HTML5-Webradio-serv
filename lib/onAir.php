@@ -39,6 +39,11 @@ if (isset($_GET) && ($_GET['server'])) {
 			$tmp = $serveur->getStatus();
 			$infos = Fip::getInfos($tmp);
 			break;
+		case 'franceculture' :
+			$serveur->setUrl($_GET['address']);
+			$tmp = $serveur->getStatus();
+			$infos = Franceculture::getInfos($tmp);
+			break;
 		default :
 			$serveur->setUrl($_GET['address']);
 			$infos = $serveur->getStatus();
