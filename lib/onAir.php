@@ -22,7 +22,7 @@ if (isset($_POST) && ($_POST['server'])) {
 	$serveur = new IceCast();
 	$html = "";
 	$infos = array();
-	if ($_POST['address']) {
+	if (trim($_POST['address']) != '') {
 		$serveur->setUrl($_POST['address']);
 		$infos = $serveur->getStatus();
 	} else {
