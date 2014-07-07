@@ -12,6 +12,12 @@ require_once ("./Icecast/Icecast.php");
 include_once ("../vendor/simplehtmldom/simple_html_dom.php");
 
 function __autoload($classname) {
+	if ($p = get_parent_class($classname))
+		include_once('./modules/'.$p.'.class.php');
+	if ($interfaces = class_implements($classname))
+		foreach ($interfaces as $interface) {
+			include_once('./modules/'.$p.'.interface.php');
+		}
     $filename = "./modules/". $classname .".class.php";
     include_once($filename);
 }
