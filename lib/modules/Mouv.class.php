@@ -17,7 +17,7 @@ class Mouv {
 		
 		if ($song = $live->find('div.direct', 0)) {
 			$item = array();
-			$item['cover'] = $song->find('img', 0);
+			$item['cover'] = $song->find('img', 0)->src;
 			$d = trim(substr($song->find('span.titre', 0)->plaintext, 0));
 			$r = explode('-', $d);
 			$item['artist'] = $r[0];
@@ -29,7 +29,7 @@ class Mouv {
 				//print($list[0]['cover']);
 				$infos['now_playing']['artist'] = $item['artist'];
 				$infos['now_playing']['track'] = ($item['title'] == null) ? '' : $item['title'];
-				$infos['now_playing']['cover'] = substr(substr($item['cover'], '10'), 0,'-20');
+				$infos['now_playing']['cover'] = $item['cover'];
 			}
 		} else {
 			$infos['artist'] = "";

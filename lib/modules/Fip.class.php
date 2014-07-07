@@ -12,7 +12,7 @@ class Fip {
 		
 		if ($song = $live->find('div.direct-current', 0)) {
 			$item = array();
-			$item['cover'] = $song->find('img', 0);
+			$item['cover'] = $song->find('img', 0)->src;
 			$d = trim(substr($song->find('span.titre', 0)->plaintext, 0));
 			$r = explode('-', $d);
 			$item['artist'] =  trim(substr($song->find('span.artiste', 0)->plaintext, 0));
@@ -23,7 +23,7 @@ class Fip {
 				//print($list[0]['cover']);
 				$infos['now_playing']['artist'] = $item['artist'];
 				$infos['now_playing']['track'] = $item['title'];
-				$infos['now_playing']['cover'] = substr(substr($item['cover'], '10'), 0,'-11');
+				$infos['now_playing']['cover'] = $item['cover'];
 			}
 		} else {
 			$infos['artist'] = "";
