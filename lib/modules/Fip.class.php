@@ -5,18 +5,17 @@ class Fip {
 
 	public static function getInfos($tmp) {
 		$infos = $tmp;
-		$html = file_get_html('http://www.fipradio.fr/');
+		$html = file_get_html('http://www.fipradio.fr/player');
 		$infos['title'] = 'FIP';
 		
-		$live = $html->find('div#direct-list', 0);
+		$live = $html->find('div#emission_content', 0);
 		
-		if ($song = $live->find('div.direct-current', 0)) {
+		if ($song = $live->find('div.content', 0)) {
 			$item = array();
-			$item['cover'] = $song->find('img', 0)->src;
-			$d = trim(substr($song->find('span.titre', 0)->plaintext, 0));
-			$r = explode('-', $d);
-			$item['artist'] =  trim(substr($song->find('span.artiste', 0)->plaintext, 0));
-			$item['title'] =  trim(substr($song->find('span.titre', 0)->plaintext, 0));
+			//$item['cover'] = $song->find('img', 0)->src;
+			$item['cover'] = 'http://www.fipradio.fr/sites/all/themes/fip_player_theme/img/95x95.png';
+			$item['artist'] =  trim(substr($song->find('p.desc', 0)->plaintext, 0));
+			$item['title'] =  trim(substr($song->find('h1.title', 0)->plaintext, 0));
 			
 			if (!(empty($item))) {
 				//print (substr(substr($list[0]['cover'], '10'), 0,'-11'));

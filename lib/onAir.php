@@ -7,8 +7,8 @@
  *
  ************************************/
 
-//require_once ("./functions.php");
-require_once ("./Icecast.php");
+
+require_once ("./Icecast/Icecast.php");
 include_once ("../vendor/simplehtmldom/simple_html_dom.php");
 
 function __autoload($classname) {
@@ -17,37 +17,23 @@ function __autoload($classname) {
 }
 
 
-if (isset($_GET) && ($_GET['server'])) {
+if (isset($_POST) && ($_POST['server'])) {
 
 	$serveur = new IceCast();
 	$html = "";
 	$infos = array();
-	
-	switch ($_GET['server']) {
-		case 'ouifm' :
-			$serveur->setUrl($_GET['address']);
-			$tmp = $serveur->getStatus();
-			$infos = Ouifm::getInfos($tmp);
-			break;
-		case 'mouv' :
-			$serveur->setUrl($_GET['address']);
-			$tmp = $serveur->getStatus();
-			$infos = Mouv::getInfos($tmp);
-			break;
-		case 'fip' :
-			$serveur->setUrl($_GET['address']);
-			$tmp = $serveur->getStatus();
-			$infos = Fip::getInfos($tmp);
-			break;
-		case 'franceculture' :
-			$serveur->setUrl($_GET['address']);
-			$tmp = $serveur->getStatus();
-			$infos = Franceculture::getInfos($tmp);
-			break;
-		default :
-			$serveur->setUrl($_GET['address']);
-			$infos = $serveur->getStatus();
-			break;
+	if ($_POST['address']) {
+		$serveur->setUrl($_POST['address']);
+		$infos = $serveur->getStatus();
+	} else {
+		$serveur->setUrl($_POST['address']);
+		$tmp = $serveur->getStatus();
+		$reflectionMethod = new ReflectionMethod(ucfirst($_POST['server']), 'getInfos');
+		if ($reflectionMethod->isStatic()) {
+			$infos = $reflectionMethod->invokeArgs(null, array($tmp));
+		} else {
+			$infos = $reflectionMethod->invokeArgs(new $_POST['server'], array($tmp));
+		}
 	}
 	print_r (json_encode($infos));
 }
