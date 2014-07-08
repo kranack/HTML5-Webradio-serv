@@ -16,7 +16,7 @@ function __autoload($classname) {
 		include_once('./modules/'.$p.'.class.php');
 	if ($interfaces = class_implements($classname))
 		foreach ($interfaces as $interface) {
-			include_once('./modules/'.$p.'.interface.php');
+			include_once('./modules/'.$interface.'.interface.php');
 		}
     $filename = "./modules/". $classname .".class.php";
     include_once($filename);
