@@ -1,11 +1,14 @@
 <?php
 
-/**
- * Description of Neo
+/************************************
  *
- * @author Damien Calesse
- */
+ *	@file=Neo.class.php
+ *	@author=Damien Calesse
+ *
+ ************************************/
+
 class Neo {
+
     public static function getInfos($tmp) {
         $infos = $tmp;
         $json = json_decode(file_get_contents('http://www.radioneo.org/player/playlistLive.php'));

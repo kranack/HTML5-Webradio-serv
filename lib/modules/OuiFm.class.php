@@ -1,11 +1,19 @@
 <?php
 
+/************************************
+ *
+ *	@file=Ouifm.class.php
+ *	@author=Damien Calesse
+ *
+ ************************************/
+
 class Ouifm {
 
 
 	public static function getInfos($tmp) {
 		$infos = $tmp;
 		$html = file_get_html('http://www.ouifm.fr/cest-quoi-ce-titre');
+		
 		$list = $html->find('div#cest-quoi-ce-titre-results', 0);
 		$items = array();
 		$infos['title'] = 'Ouï FM';
