@@ -14,6 +14,7 @@ Radios
 ------
 
 * `Le Mouv'` : http://www.lemouv.fr/
+* `Radio Néo` : http://www.radioneo.org/
 * `Oxyradio` : http://www.oxyradio.net/
 * `Chillstep` : http://chillstep.info/
 * `Ouï FM` : http://www.ouifm.fr/

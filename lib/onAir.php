@@ -28,12 +28,10 @@ if (isset($_POST) && ($_POST['server'])) {
 	$serveur = new IceCast();
 	$html = "";
 	$infos = array();
-	if (trim($_POST['address']) != '') {
-		$serveur->setUrl($_POST['address']);
-		$infos = $serveur->getStatus();
-	} else {
-		$serveur->setUrl($_POST['address']);
-		$tmp = $serveur->getStatus();
+	$serveur->setUrl($_POST['address']);
+	$tmp = $serveur->getStatus();
+
+	if (trim($_POST['address']) == '') {
 		$reflectionMethod = new ReflectionMethod(ucfirst($_POST['server']), 'getInfos');
 		if ($reflectionMethod->isStatic()) {
 			$infos = $reflectionMethod->invokeArgs(null, array($tmp));
@@ -41,5 +39,6 @@ if (isset($_POST) && ($_POST['server'])) {
 			$infos = $reflectionMethod->invokeArgs(new $_POST['server'], array($tmp));
 		}
 	}
+
 	print_r (json_encode($infos));
 }
