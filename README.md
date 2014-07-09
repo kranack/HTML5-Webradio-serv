@@ -31,6 +31,20 @@ Libs
 
 	- Simple HTML DOM
 	- Icecast
+
+
+Modules
+----
+
+	- Mouv
+	- Neo
+	- Ouifm
+	- Virgin
+	- Franceinfo
+	- Franceinter
+	- Francemusique
+	- Franceculture
+	- Fip
 	
 
 Author
