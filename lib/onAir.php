@@ -29,7 +29,7 @@ if (isset($_POST) && ($_POST['server'])) {
 	$html = "";
 	$infos = array();
 	$serveur->setUrl($_POST['address']);
-	$tmp = $serveur->getStatus();
+	$infos = $tmp = $serveur->getStatus();
 
 	if (trim($_POST['address']) == '') {
 		$reflectionMethod = new ReflectionMethod(ucfirst($_POST['server']), 'getInfos');
