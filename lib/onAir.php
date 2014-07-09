@@ -25,11 +25,10 @@ function __autoload($classname) {
 
 if (isset($_POST) && ($_POST['server'])) {
 
-	$serveur = new IceCast();
-	$html = "";
+	$server = new IceCast();
 	$infos = array();
-	$serveur->setUrl($_POST['address']);
-	$infos = $tmp = $serveur->getStatus();
+	$server->setUrl($_POST['address']);
+	$infos = $tmp = $server->getStatus();
 
 	if (trim($_POST['address']) == '') {
 		$reflectionMethod = new ReflectionMethod(ucfirst($_POST['server']), 'getInfos');

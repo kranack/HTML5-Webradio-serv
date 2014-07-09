@@ -9,7 +9,7 @@
 
 class IceCast {
 
-	var $server = "http://www.oxyradio.net:8000";	
+	var $server = "";	
     var $stats_file = "/status.xsl";
     var $radio_info=array();
 
@@ -74,7 +74,7 @@ class IceCast {
 		
         if(count($temp_array)) {
             //sort our temp array into our ral array
-			if ($_GET['server'] == 'oxyradio') {
+			/*if ($_GET['server'] == 'oxyradio') {
 				$this->radio_info['title'] = $temp_array[0];
 				$this->radio_info['description'] = $temp_array[1];
 				$this->radio_info['content_type'] = $temp_array[2];
@@ -95,7 +95,7 @@ class IceCast {
 						$this->radio_info['now_playing']['track'] = $x[1];
 					}
 				}
-			} else {
+			} else {*/
 				$this->radio_info['title'] = $temp_array[0];
 				$this->radio_info['description'] = $temp_array[1];
 				$this->radio_info['content_type'] = $temp_array[2];
@@ -117,8 +117,8 @@ class IceCast {
 					}
 				}
 			}
-        }
+        //}
         return $this->radio_info;
-        }
+    }
 
 }
