@@ -16,8 +16,10 @@ class Mouv {
 		$infos['title'] = "Le Mouv'";
 
 		$live = $html->find('div#block-lemouv_direct-direct', 0);
-		$infos['now_playing']['animateur'] = trim(substr($live->find('span.animateur', 0)->plaintext, 0));
-		$infos['now_playing']['emission'] = trim(substr($html->find('span.emission', 0)->plaintext, 0));
+		if ($live->find('span.animateur', 0))
+			$infos['now_playing']['animateur'] = trim(substr($live->find('span.animateur', 0)->plaintext, 0));
+		if ($live->find('span.emission', 0))
+			$infos['now_playing']['emission'] = trim(substr($html->find('span.emission', 0)->plaintext, 0));
 		
 		if ($song = $live->find('div.direct', 0)) {
 			$item = array();
