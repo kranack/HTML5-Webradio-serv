@@ -12,17 +12,8 @@ require_once ('./require.php');
 
 
 if (isset($_POST) && ($_POST['server'])) {
-
-	$infos = Server::init($_POST['address']);
-
-	if (trim($_POST['address']) == '') {
-		$reflectionMethod = new ReflectionMethod(ucfirst($_POST['server']), 'getInfos');
-		if ($reflectionMethod->isStatic()) {
-			$infos = $reflectionMethod->invokeArgs(null, array($infos));
-		} else {
-			$infos = $reflectionMethod->invokeArgs(new $_POST['server'], array($infos));
-		}
-	}
+	$infos = array();
+	$infos = Server::init($_POST['address'], $_POST['server']);
 
 	print_r (json_encode($infos));
 }
