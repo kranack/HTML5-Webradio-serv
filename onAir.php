@@ -11,9 +11,18 @@
 require_once ('./require.php');
 
 
-if (isset($_POST) && ($_POST['server'])) {
+if (isset($_GET) && ($_GET['server'])) {
 	$infos = array();
-	$infos = Server::init($_POST['address'], $_POST['server']);
+	Server::init($_GET['address'], $_GET['server']);
 
-	print_r (json_encode($infos));
+	$infos = Server::getInfos();
+
+	while (trim($infos['now_playing']['track'], ' ') == trim(urldecode($_GET['current_track']), ' ')) 
+	{
+		usleep(10000000); // 10 s (10 * 1 000 000 us)
+		Server::reload();
+		$infos = Server::getInfos();
+	}
+
+	echo json_encode($infos);
 }
